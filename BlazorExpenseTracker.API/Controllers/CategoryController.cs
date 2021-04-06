@@ -32,7 +32,7 @@ namespace BlazorExpenseTracker.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCategory([FromBody]Category category)
+        public async Task<IActionResult> CreateCategory([FromBody] Category category)
         {
             if (category == null)
                 return BadRequest();
@@ -74,6 +74,7 @@ namespace BlazorExpenseTracker.API.Controllers
         {
             if (id == 0)
                 return BadRequest();
+
             await _categoryRepository.DeleteCategory(id);
 
             return NoContent();

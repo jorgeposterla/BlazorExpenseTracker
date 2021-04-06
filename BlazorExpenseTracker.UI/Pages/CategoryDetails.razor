@@ -1,5 +1,7 @@
 ﻿@page "/categorydetails"
 @using Model
+@using Interfaces
+@inject ICategoryService CategoryService
 
 <h1>Category Details</h1>
 
@@ -10,6 +12,7 @@
             <td>Name</td>
             <td><input type="text" @bind="category.Name" /></td>
         </tr>
+        <tr><td colspan="2"><ValidationMessage For="@(() => category.Name)"/></td></tr>
         <tr>
             <td colspan="2" style="text-align: center">
                 <input type="submit" value="Save" />
@@ -23,8 +26,8 @@
 
     Category category = new Category();
 
-    protected void SaveCategory()
-        {
-
-        }
+    protected async Task SaveCategory()
+    {
+        await CategoryService.SaveCategory(category);
+    }
 }
